@@ -1,0 +1,12 @@
+# Recommended: deploy the WHOLE app on Render (see render.yaml). It serves the website, login,
+# NASA data, NOVA and multiplayer from one URL, so nothing else is needed.
+#
+# Only if you still want the static files on Netlify: set window.SS_API_BASE in
+# public/js/config.js to your Render URL and add that Netlify URL to CORS_ORIGINS on Render.
+[build]
+  publish = "public"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

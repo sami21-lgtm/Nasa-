@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d1b">
+  <title>My Profile | SpaceSkribble</title>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/gate.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./profile.css">
+
+  <script src="./profile.js" defer></script>
+</head>
+<body>
+
+  <button id="logout-button" class="logout-button" type="button">
+    ↪ Log Out
+  </button>
+
+  <main class="profile-page">
+
+    <a class="back-link" href="./index.html">
+      ← Back to SpaceSkribble
+    </a>
+
+    <header class="profile-header">
+      <p class="eyebrow">SPACE EXPLORER CENTER</p>
+      <h1>My Profile</h1>
+      <p class="muted">Your identity, achievements and cosmic journey.</p>
+    </header>
+
+    <nav class="section-nav" aria-label="Profile navigation">
+      <a href="#profileOverview">👤 My Profile</a>
+      <a href="#levelProgressSection">⚡ Level Progress</a>
+      <a href="#badgesSection">🏅 My Badges</a>
+      <a href="#learningSection">🔭 Learning Progress</a>
+      <a href="#missionDashboard">🏠 Mission Dashboard</a>
+      <a href="#settingsPanel">⚙️ Settings</a>
+    </nav>
+
+    <!-- PLAYER PROFILE -->
+    <section class="profile-panel" id="profileOverview">
+
+      <div class="avatar-editor">
+        <div class="avatar-circle">
+          <img
+            id="avatarPreview"
+            src="./default-avatar.svg"
+            alt="Player avatar"
+          >
+        </div>
+
+        <label class="upload-btn" for="avatarUpload">
+          📷 Upload Photo
+        </label>
+
+        <input
+          id="avatarUpload"
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          hidden
+        >
+
+        <p>
+          <button id="removeAvatar" class="remove-btn" type="button">
+            Remove Photo
+          </button>
+        </p>
+
+        <p class="avatar-hint">JPG, PNG, WebP · Max 2 MB</p>
+      </div>
+
+      <div class="player-info">
+        <p class="eyebrow">PLAYER PROFILE</p>
+        <h2 id="playerName">Space Explorer</h2>
+        <p class="muted" id="playerLevel">Level 1 · Cosmic Rookie</p>
+
+        <label for="nameInput">Player Name</label>
+
+        <div class="name-controls">
+          <input
+            id="nameInput"
+            maxlength="30"
+            placeholder="Enter your player name"
+          >
+
+          <button id="saveName" class="save-btn" type="button">
+            Save Name
+          </button>
+        </div>
+
+        <p id="profileMessage" class="profile-message"
+           aria-live="polite"></p>
+      </div>
+
+    </section>
+
+    <!-- PLAYER STATISTICS -->
+    <section class="profile-stats">
+
+      <article class="profile-stat">
+        <span>⭐</span>
+        <p>Current Level</p>
+        <strong id="levelValue">1</strong>
+      </article>
+
+      <article class="profile-stat">
+        <span>⚡</span>
+        <p>Total XP</p>
+        <strong id="xpValue">0 XP</strong>
+      </article>
+
+      <article class="profile-stat">
+        <span>🏅</span>
+        <p>Badges Earned</p>
+        <strong id="badgeCount">0</strong>
+      </article>
+
+    </section>
+
+    <!-- LEVEL PROGRESS -->
+    <section class="profile-section" id="levelProgressSection">
+      <h2>⚡ Level Progress</h2>
+
+      <p class="muted" id="xpLabel">0 / 100 XP</p>
+
+      <div
+        class="progress-track"
+        id="xpProgressTrack"
+        role="progressbar"
+        aria-label="Level progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+      >
+        <div id="xpProgress" class="progress-fill"></div>
+      </div>
+
+      <p class="muted" id="xpHint">
+        Earn XP to reach the next level.
+      </p>
+    </section>
+
+    <!-- BADGES -->
+    <section class="profile-section" id="badgesSection">
+      <h2>🏅 My Badges</h2>
+
+      <div id="badgesGrid" class="badges-grid">
+        <p class="muted">Your earned badges will appear here.</p>
+      </div>
+    </section>
+
+    <!-- LEARNING PROGRESS -->
+    <section class="profile-section" id="learningSection">
+      <h2>🔭 Learning Progress</h2>
+
+      <div id="learningList" class="learning-list">
+        <p class="muted">Your learning progress will appear here.</p>
+      </div>
+    </section>
+
+    <!-- MISSION DASHBOARD -->
+    <section class="profile-section" id="missionDashboard">
+      <h2>🏠 Mission Dashboard</h2>
+      <p class="muted">
+        Track your missions and cosmic achievements.
+      </p>
+
+      <div class="profile-stats">
+
+        <article class="profile-stat">
+          <span>🚀</span>
+          <p>Missions Completed</p>
+          <strong id="missionsCompleted">0</strong>
+        </article>
+
+        <article class="profile-stat">
+          <span>🌍</span>
+          <p>Earth Status</p>
+          <strong id="earthStatus">Stable</strong>
+        </article>
+
+        <article class="profile-stat">
+          <span>🏆</span>
+          <p>Current Rank</p>
+          <strong id="missionRank">Cosmic Rookie</strong>
+        </article>
+
+      </div>
+
+      <!-- DAILY CHALLENGE -->
+      <div class="mission-card">
+        <h3>🌟 Daily Challenge</h3>
+
+        <p id="dailyChallengeText" class="muted">
+          Complete a mission to start your daily challenge.
+        </p>
+
+        <button
+          id="dailyChallengeButton"
+          class="save-btn"
+          type="button"
+        >
+          Claim Daily Reward
+        </button>
+
+        <p
+          id="dailyChallengeMessage"
+          class="profile-message"
+          aria-live="polite"
+        ></p>
+      </div>
+
+      <!-- AVAILABLE MISSIONS -->
+      <h3>🪐 Available Missions</h3>
+
+      <div id="missionsList" class="missions-list">
+        <p class="muted">Missions will appear here.</p>
+      </div>
+    </section>
+
+    <!-- SETTINGS & ACCESSIBILITY -->
+    <section class="profile-section" id="settingsPanel">
+      <h2>⚙️ Settings &amp; Accessibility</h2>
+
+      <p class="muted">
+        Customize your SpaceSkribble experience.
+      </p>
+      <div class="settings-row">
+        <div>
+          <strong>🔊 Sound Effects</strong>
+          <p class="muted">Enable or disable game sounds.</p>
+        </div>
+
+        <input id="soundSetting" type="checkbox" checked
+               aria-label="Sound effects">
+      </div>
+      <div class="settings-row">
+        <div>
+          <strong>🔎 Larger Text</strong>
+          <p class="muted">Make profile text easier to read.</p>
+        </div>
+
+        <input id="largeTextSetting" type="checkbox"
+               aria-label="Larger text">
+      </div>
+
+      <div class="settings-row">
+        <div>
+          <strong>♿ High Contrast</strong>
+          <p class="muted">Increase contrast for readability.</p>
+        </div>
+
+        <input id="contrastSetting" type="checkbox"
+               aria-label="High contrast">
+      </div>
+
+      <div class="settings-actions">
+        <button id="saveSettings" class="save-btn" type="button">
+          Save Settings
+        </button>
+      </div>
+
+      <p id="settingsMessage" class="profile-message"
+         aria-live="polite"></p>
+    </section>
+
+    <footer class="profile-footer">
+      🚀 SpaceSkribble — Explore the universe, one mission at a time.
+    </footer>
+
+  </main>
+
+  <script>
+
+document.getElementById("logout-button").addEventListener("click", () => {
+  window.SS.logout();
+});
+
+
+    const avatarPreview = document.getElementById("avatarPreview");
+
+    avatarPreview.addEventListener("error", function () {
+      if (this.dataset.fallback) return;
+
+      this.dataset.fallback = "true";
+
+      this.src = "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(
+          '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">' +
+          '<rect width="120" height="120" rx="60" fill="#172344"/>' +
+          '<text x="60" y="78" text-anchor="middle" font-size="58">🚀</text>' +
+          '</svg>'
+        );
+    });
+  </script>
+ 
+
+</body>
+</html>
